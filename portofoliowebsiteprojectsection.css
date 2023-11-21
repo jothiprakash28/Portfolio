@@ -1,0 +1,19 @@
+body{
+    background-color: gray;
+}
+.card{
+    background-color: rgb(98, 94, 94);
+}
+.card .card-text{
+    color: rgb(164, 162, 162);
+}
+h5{
+    color: yellow;
+}
+.card .btn{
+    color: yellow;
+}
+.card .card-subtitle{
+    color: white;   
+    font-size:20px;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input to Table</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+        background-image: url(https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fGJhY2tncm91bmQlMjBpbWFnZXxlbnwwfHx8fDE2OTM5MTgwNjd8MA&ixlib=rb-4.0.3);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        margin: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    select {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    button {
+        padding: 5px 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+    <h1>Input to Table</h1>
+    
+    <form id="data-form">
+        <label for="name">carname:</label>
+        <input type="text" id="name" required>
+        
+        <label for="age">price:</label>
+        <input type="number" id="age" required>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+            <option value="Good">Good</option>
+            <option value="very Good">very Good</option>
+            <option value="Amazing">Amazing</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <table id="data-table">    
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>color</th>
+                <th>How it was</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <div class="container">
+        <h2 class="mt-5">Mobiles Launched in India</h2>
+        <form id="userInfoForm">
+            <!-- Use Bootstrap classes for form layout -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" required placeholder="Mobile Name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Price">Price:</label>
+                        <input type="number" class="form-control" id="price" required placeholder="Mobile Price">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <input type="text" class="form-control" id="color" required placeholder="Color">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="warranty">Warranty:</label>
+                        <input type="text" class="form-control" id="warranty" required placeholder="Warranty">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="specification">Specification:</label>
+                        <input type="text" class="form-control" id="specification" required placeholder="Specification">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="brand">Brand:</label>
+                        <input type="text" class="form-control" id="brand" required placeholder="Brand">
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary" onclick="saveData()">Save</button>
+        </form>
+
+        <h2 class="mt-4">Stored User Data</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>COLOR</th>
+                    <th>WARRANTY</th>
+                    <th>SPECIFICATION</th>
+                    <th>BRAND</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userData">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dataForm = document.getElementById("data-form");
+            const dataTableBody = document.querySelector("#data-table tbody");
+
+            dataForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const nameInput = document.getElementById("name");
+                const ageInput = document.getElementById("age");
+                const genderSelect = document.getElementById("gender");
+
+                const name = nameInput.value;
+                const age = ageInput.value;
+                const gender = genderSelect.value;
+
+                if (name && age && gender) {
+                    // Create a new row in the table
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td>${name}</td>
+                        <td>${age}</td>
+                        <td>${gender}</td>
+                    `;
+
+                    // Append the new row to the table
+                    dataTableBody.appendChild(newRow);
+
+                    // Clear the form inputs
+                    nameInput.value = "";
+                    ageInput.value = "";
+                    genderSelect.value = "male"; // Reset the gender select to the default value
+                }
+            });
+        });
+
+
+
+        
+    </script>
+</body>
+</html>
